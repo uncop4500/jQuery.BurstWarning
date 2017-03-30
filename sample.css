@@ -55,3 +55,7 @@ background:#fff;
 .iform li.iseparator { display:block; text-indent:-9999px; height:10px; line-height:10px; border-bottom:1px solid #999;margin:5px 0 15px }
 
 .iform .required { border-color:#F00; }
+
+.iform .iradio:hover {
+    opacity: 0.6;
+}

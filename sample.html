@@ -6,9 +6,10 @@
 	<meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="jquery.burstWarning.css" />
     <link rel="stylesheet" type="text/css" href="sample.css" />
-    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Hind+Vadodara:700" rel="stylesheet" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="jquery.burstWarning.js"></script>
-    <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     <script type="text/javascript">
         $(function () {
             var url = location.href;
@@ -28,12 +29,18 @@
                 var message1 = decodeURIComponent(paramArray["message1"]);
                 var message2 = decodeURIComponent(paramArray["message2"]);
                 var message3 = decodeURIComponent(paramArray["message3"]);
+                var mode = decodeURIComponent(paramArray["mode"]);
 
                 if(caption && message1 && message2 && message3){
                     $("#caption").val(caption);
                     $("#message1").val(message1);
                     $("#message2").val(message2);
                     $("#message3").val(message3);
+                    if(mode === "CS"){
+                        $("#cs").prop("checked", true);
+                    } else {
+                        $("#ac").prop("checked", true);
+                    }
                 }
             }
 
@@ -44,17 +51,23 @@
                 $("#message1").val(),
                 $("#message2").val(),
                 $("#message3").val(),
-                { sound: "crow1.mp3" }
+                {
+                    sound: "crow1.mp3",
+                    mode: $("input[name='mode']:checked").val(),
+                }
             );
 
             $("#submit").click(function () {
-                if ($("#caption").val() && $("#message1").val() && $("#message2").val() && $("#message3").val()) {
+                if ($("#caption").val() && $("#message1").val() && $("#message2").val() && $("#message3").val() && $("input[name='mode']:checked").val()) {
 			        $.burstWarning(
                         $("#caption").val(),
                         $("#message1").val(),
                         $("#message2").val(),
                         $("#message3").val(),
-                        {sound:"crow1.mp3"}
+                        {
+                            sound: "crow1.mp3",
+                            mode: $("input[name='mode']:checked").val(),
+                        }
                     );
 
                     updateTweetButton();
@@ -63,19 +76,10 @@
 
             // ツイートボタン更新
 			function updateTweetButton() {
-			    var caption = encodeURIComponent($("#caption").val());
-			    var message1 = encodeURIComponent($("#message1").val());
-			    var message2 = encodeURIComponent($("#message2").val());
-			    var message3 = encodeURIComponent($("#message3").val());
-			    var param = "";
-			    if (caption && message1 && message2 && message3) {
-			        param = "?caption=" + caption + "&message1=" + message1 + "&message2=" + message2 + "&message2=" + message2;
-			    }
-
 			    $('#tweetButtonHolder').empty();
 
 			    twttr.widgets.createShareButton(
-                  "http://uncop4500.github.io/jQuery.BurstWarning/sample.html?caption=" + encodeURIComponent($("#caption").val()) + "&message1=" + encodeURIComponent($("#message1").val()) + "&message2=" + encodeURIComponent($("#message2").val()) + "&message3=" + encodeURIComponent($("#message3").val()),
+                  "http://uncop4500.github.io/jQuery.BurstWarning/sample.html?caption=" + encodeURIComponent($("#caption").val()) + "&message1=" + encodeURIComponent($("#message1").val()) + "&message2=" + encodeURIComponent($("#message2").val()) + "&message3=" + encodeURIComponent($("#message3").val()) + "&mode=" + encodeURIComponent($("input[name='mode']:checked").val()),
                   document.getElementById('tweetButtonHolder'),
                   {
                       lang: "ja",
@@ -95,11 +99,12 @@
             <li><label for="message1">メッセージ1行目</label><input class="itext" type="text" name="message1" id="message1" placeholder="例：A HUGE BATTLE SHIP" value="A HUGE BATTLE SHIP" /></li>
             <li><label for="message2">メッセージ2行目</label><input class="itext" type="text" name="message2" id="message2" placeholder="例：UNAGI FOSSIL" value="UNAGI FOSSIL" /></li>
             <li><label for="message3">メッセージ3行目</label><input class="itext" type="text" name="message3" id="message3" placeholder="例：IS APPROACHING FAST" value="IS APPROACHING FAST" /></li>
+            <li><label>演出パターン</label><label class="iradio"><input type="radio" name="mode" id="ac" value="AC" checked="checked" />AC</label><label class="iradio"><input type="radio" name="mode" id="cs" value="CS" />CS</label></li>
             <li><label>&nbsp;</label><input type="button" class="ibutton" name="submit" id="submit" value="わーにん！" /></li>
         </ul>
         <br />
         <ul>
-            <li>スマホだと動作が微妙（フォントが少し違ったり、初回は音が鳴らなかったり等）ですが、制限です。PC推奨。</li>
+            <li>スマホでの動作が微妙だったり、CSモードの再現度がやや低かったりするかもしれませんが、まあドンマイということで。</li>
             <li>jQueryプラグインとして<a href="https://github.com/uncop4500/jQuery.BurstWarning">公開中</a>ですので適当にどうぞ。</li>
         </ul>
         ↓表示したわーにんを共有
@@ -107,6 +112,9 @@
         </div>
         <br />
         ※本物のWARNING音が使えないので、代わりに<a href="http://taira-komori.jpn.org/" target="_blank">「無料効果音で遊ぼう！」様</a>のフリー素材を使用しています。
+        <br />
+        <br />
+        何かあれば、COP(Twitter:<a href="https://twitter.com/uncop4500">@uncop4500</a>)まで適当にご連絡ください。
     </div>
 
 </body>
