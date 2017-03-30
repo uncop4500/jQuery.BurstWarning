@@ -1,7 +1,8 @@
-﻿.burstWarningBg {
+﻿@import url('https://fonts.googleapis.com/css?family=Anton|Hind+Vadodara:700&subset=latin-ext');
+
+.burstWarningBg {
     all:initial;
     line-height:1;
-    font-family: Impact, Anton;
     display: none;
     position: fixed;
     left: 0;
@@ -16,29 +17,47 @@
     background: rgb(0, 0, 0);
 }
 
-.burstWarningBg .burstWarningMarginTop {
+.burstWarningBg .dbacMarginTop {
     height: 27.5%;
 }
-
-.burstWarningBg .burstWarningMarginBottom {
-    height: 17.5%;
+.burstWarningBg .dbcsMarginTop {
+    height: 22%;
 }
 
-.burstWarningBg .burstWarningContainer {
+.burstWarningBg .dbacMarginBottom {
+    height: 17.5%;
+}
+.burstWarningBg .dbcsMarginBottom {
+    height: 15%;
+}
+
+.burstWarningBg .dbacContainer {
     margin: 0 7.5%;
     height: 55%;
+}
+.burstWarningBg .dbcsContainer {
+    margin: 0 7.5%;
+    height: 63%;
 }
 
 .burstWarningBg .burstWarningCaption {
     white-space: nowrap;
 }
 
-.burstWarningBg .burstWarningCaptionString {
+.burstWarningBg .dbacCaptionString {
+    font-family: Impact, Anton, sans-serif;
     font-size: 190px;
     color: #FF0000;
     display: inline-block;
-    transform: matrix(1, 0, 0, 0, 0, 0);
-    -webkit-transform: matrix(1, 0, 0, 0, 0, 0);
+    transform: scaleY(0);
+    -webkit-transform: scaleY(0);
+}
+
+.burstWarningBg .dbcsCaptionString {
+    font-family: Impact, Anton, sans-serif;
+    font-size: 240px;
+    color: transparent;
+    display: inline-block;
 }
 
 .burstWarningBg .burstWarningMessage1 {
@@ -56,9 +75,20 @@
     color: #FFFFFF;
 }
 
-.burstWarningBg .burstWarningMessageString {
+.burstWarningBg .dbacMessageString {
+    font-family: Impact, Anton, sans-serif;
     font-size: 45px;
     display: inline-block;
-    transform: matrix(1, 0, 0, 0, 0, 0);
-    -webkit-transform: matrix(1, 0, 0, 0, 0, 0);
+    transform: scaleY(0);
+    -webkit-transform: scaleY(0);
+    margin: 0;
+}
+
+.burstWarningBg .dbcsMessageString {
+    font-family: 'Hind Vadodara', sans-serif;
+    font-size: 80px;
+    display: inline-block;
+    position: relative;
+    opacity: 0;
+    margin: 10px 0;
 }
