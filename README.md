@@ -24,6 +24,7 @@ $.burstWarning(
   "UNAGI FOSSIL",
   "IS APPROACHING FAST",
   {
+    mode: "CS",
     sound: "warning.mp3",
     callback: function () { alert("わーにん完了");}
   }
@@ -48,6 +49,11 @@ $.burstWarning(
 ### options（任意）
 オプション設定項目のオブジェクトです。  
 必要な項目のみ設定してください。
+
+#### mode
+演出パターンを指定します。
+'"AC"'だとACモード、'"CS"'だとCSモードの演出になります。
+指定しない場合はACモードになります。（例：`"CS"`）
 
 #### sound
 WARNING表示時に再生するサウンドファイルのパスを指定します。（例：`"warning.mp3"`）
